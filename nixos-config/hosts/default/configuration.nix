@@ -110,19 +110,30 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+     # system
      util-linux
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+     auto-cpufreq
+
+     # editors
+     vim
      neovim
      vscode
+
+     # terminal
      kitty
-     auto-cpufreq
-     poetry
+     zsh
+     
+     # coding stuff
      git
+     nodejs
+     poetry
      python3
      (python3.withPackages (ps: with ps; [pip]))
-     nodejs
-     zsh
-     zsh-autosuggestions
+
+     # utils
+     bat
+     ripgrep
+     fzf
   ];
 
   programs.auto-cpufreq.enable = true;
@@ -138,13 +149,17 @@
         turbo = "auto";
       };
   };
-  
+
   programs.zsh = {
       enable = true;
       autosuggestions.enable = true;
+      shellAliases = {
+        l = "ls -l";
+        update = "sudo nixos-rebuild switch --flake /home/aless/.config/nixos-config#default";
+      };
       ohMyZsh.enable = true;
       ohMyZsh.plugins = [ "git" ];
-      ohMyZsh.theme = "frisk";
+      ohMyZsh.theme = "robbyrussell";
       syntaxHighlighting.enable = true;
   };
 

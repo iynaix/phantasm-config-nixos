@@ -9,6 +9,12 @@
     - understand what should go into home-manager
         - i should put configurations in there as far as i can tell
 
+### fonts
+
+- install caskaydia nerd font
+- install notosansjp
+- install notocoloremoji
+
 ### zsh
 
 - it's super slow, maybe this https://github.com/nix-community/home-manager/issues/108
