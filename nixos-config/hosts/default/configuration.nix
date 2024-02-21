@@ -1,15 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    # inputs.home-manager.nixosModules.default
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -18,7 +20,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -88,21 +90,21 @@
   users.users.aless = {
     isNormalUser = true;
     description = "aless";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
   users.defaultUserShell = pkgs.zsh;
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "aless" = import ./home.nix;
-    };
-  };
+  # home-manager = {
+  #   extraSpecialArgs = {inherit inputs;};
+  #   users = {
+  #     "aless" = import ./home.nix;
+  #   };
+  # };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -110,61 +112,61 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     # system
-     util-linux
-     auto-cpufreq
+    # system
+    util-linux
+    tree
 
-     # editors
-     vim
-     neovim
-     vscode
+    # editors
+    vim
+    neovim
+    vscode
 
-     # terminal
-     kitty
-     zsh
-     
-     # coding stuff
-     git
-     nodejs
-     poetry
-     python3
-     (python3.withPackages (ps: with ps; [pip]))
+    # terminal
+    kitty
+    zsh
 
-     # utils
-     bat
-     ripgrep
-     fzf
+    # coding stuff
+    git
+    nodejs
+    poetry
+    python3
+    (python3.withPackages (ps: with ps; [pip]))
+
+    # utils
+    bat
+    ripgrep
+    fzf
   ];
 
   programs.auto-cpufreq.enable = true;
 
   programs.auto-cpufreq.settings = {
-      charger = {
-        governor = "performance";
-        turbo = "auto";
-      };
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
 
-      battery = {
-        governor = "powersave";
-        turbo = "auto";
-      };
+    battery = {
+      governor = "powersave";
+      turbo = "auto";
+    };
   };
 
   programs.zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      shellAliases = {
-        l = "ls -l";
-        rebuild = "sudo nixos-rebuild switch --flake /home/aless/.config/nixos-config#default";
-      };
-      ohMyZsh.enable = true;
-      ohMyZsh.plugins = [ "git" ];
-      ohMyZsh.theme = "robbyrussell";
-      syntaxHighlighting.enable = true;
+    enable = true;
+    autosuggestions.enable = true;
+    shellAliases = {
+      l = "ls -l";
+      rebuild = "sudo nixos-rebuild switch --flake /home/aless/.config/nixos-config#default";
+    };
+    ohMyZsh.enable = true;
+    ohMyZsh.plugins = ["git"];
+    ohMyZsh.theme = "robbyrussell";
+    syntaxHighlighting.enable = true;
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    (nerdfonts.override {fonts = ["CascadiaCode"];})
     noto-fonts-color-emoji
     noto-fonts-cjk-sans
   ];
@@ -195,5 +197,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
