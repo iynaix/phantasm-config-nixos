@@ -4,16 +4,12 @@
 
 ### general
 
+- fix battery life, still goes down pretty quickly
+
 - really understand what the heck flakes are
 - really understand what the heck home-manager is
     - understand what should go into home-manager
         - i should put configurations in there as far as i can tell
-
-### fonts
-
-- install caskaydia nerd font
-- install notosansjp
-- install notocoloremoji
 
 ### zsh
 

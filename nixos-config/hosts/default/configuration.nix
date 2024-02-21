@@ -155,13 +155,19 @@
       autosuggestions.enable = true;
       shellAliases = {
         l = "ls -l";
-        update = "sudo nixos-rebuild switch --flake /home/aless/.config/nixos-config#default";
+        rebuild = "sudo nixos-rebuild switch --flake /home/aless/.config/nixos-config#default";
       };
       ohMyZsh.enable = true;
       ohMyZsh.plugins = [ "git" ];
       ohMyZsh.theme = "robbyrussell";
       syntaxHighlighting.enable = true;
   };
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    noto-fonts-color-emoji
+    noto-fonts-cjk-sans
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
