@@ -38,7 +38,6 @@
           ./hosts
           ./modules
           home-manager.nixosModules.default
-          # home-manager.nixosModules.home-manager
           auto-cpufreq.nixosModules.default
 
           {
@@ -46,6 +45,17 @@
           }
         ];
       };
+    };
+
+    homeConfigurations."aless" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+
+      # Specify your home configuration modules here, for example,
+      # the path to your home.nix.
+      modules = [./hosts/laptop/home.nix];
+
+      # Optionally use extraSpecialArgs
+      # to pass through arguments to home.nix
     };
   };
 }

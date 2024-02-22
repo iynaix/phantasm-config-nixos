@@ -102,11 +102,7 @@
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
     users = {
-      users.aless = {
-         imports = [ ./home.nix ];
-      };
-
-      # "aless" = import ./home.nix;
+      "aless" = import ./home.nix;
     };
   };
 
@@ -118,6 +114,7 @@
   environment.systemPackages = with pkgs; [
     # system
     util-linux
+    home-manager
     tree
 
     # editors
@@ -161,7 +158,7 @@
     autosuggestions.enable = true;
     shellAliases = {
       l = "ls -l";
-      rebuild = "sudo nixos-rebuild switch --flake /home/aless/.config/nixos-config#default";
+      rebuild = "sudo nixos-rebuild switch --flake /home/aless/.config/nixos-config#laptop";
     };
     ohMyZsh.enable = true;
     ohMyZsh.plugins = ["git"];
