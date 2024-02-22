@@ -10,7 +10,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.default
   ];
 
   # Bootloader.
@@ -98,13 +97,6 @@
   };
 
   users.defaultUserShell = pkgs.zsh;
-
-  home-manager = {
-    extraSpecialArgs = {inherit inputs;};
-    users = {
-      "aless" = import ./home.nix;
-    };
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

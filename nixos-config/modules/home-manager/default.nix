@@ -1,5 +1,5 @@
 {
-    # imports = [
-    #   ./home.nix
-    # ];
+  imports = [
+    ./programs.nix
+  ];
 }
