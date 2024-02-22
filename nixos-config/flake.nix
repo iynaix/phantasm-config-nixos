@@ -38,6 +38,7 @@
           ./hosts
           ./modules
           home-manager.nixosModules.default
+          # home-manager.nixosModules.home-manager
           auto-cpufreq.nixosModules.default
 
           {

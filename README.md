@@ -4,6 +4,8 @@
 
 ### general
 
+- understand why nixos-rebuild switch made my laptop explode 2 times
+
 - understand if i need ./nixos-config/modules/home-manager/flake.nix (probably can be merged with flake.nix in the root)
 
 - change $NIX_PATH
@@ -13,6 +15,7 @@
 ### home-manager
 
 - make it work with the new file structure
+- move there some stuff that should be there
 
 ### latex
 
